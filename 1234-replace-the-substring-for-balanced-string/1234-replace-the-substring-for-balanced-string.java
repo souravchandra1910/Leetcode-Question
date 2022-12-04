@@ -17,7 +17,7 @@ class Solution {
                 int len = i - j + 1;
                 ans = Math.min(len, ans);
                 // release
-                while (j <= i) {
+                while (j < i) {
                     char ch1 = s.charAt(j);
                     hm.put(ch1, hm.getOrDefault(ch1, 0) + 1);
                     j++;
