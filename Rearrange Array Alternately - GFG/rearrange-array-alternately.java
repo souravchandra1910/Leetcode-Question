@@ -55,21 +55,15 @@ class Solution{
     // n: size of array
     //Function to rearrange  the array elements alternately.
     public static void rearrange(long arr[], int n){
-        
-       int k=0;
-       int j=arr.length-1;
-       long []ans=new long[n];
-       
-       for(int i=0;i<n;i=i+2){
-           ans[i]=arr[j--];
-       }
-        for(int i=1;i<n;i=i+2){
-           ans[i]=arr[k++];
-       }
-       for(int i=0;i<n;i++)arr[i]=ans[i];
-       
+     int j=0;
+     int k=arr.length-1;
+     int max=(int)arr[n-1]+1;
+     for(int i=0;i<arr.length;i++){
+         if(i%2==0)arr[i]=(arr[k--]%max)*max+arr[i];
+         else arr[i]=(arr[j++]%max)*max+arr[i];
+     }
+     for(int i=0;i<n;i++)arr[i]/=max;
     }
-    
 }
 
 
