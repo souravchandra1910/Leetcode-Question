@@ -73,21 +73,42 @@ class GFG {
 
 class Solution{
     public int[] mergeHeaps(int[] a, int[] b, int n, int m) {
-         PriorityQueue<Integer> pq = new PriorityQueue<Integer>(Collections.reverseOrder());
-        
-        int arr[] = new int[n+m]; 
-        
-        for(int i=0; i<n; i++)
-            pq.add(a[i]); 
-            
-        for(int i=0; i<m; i++)
-            pq.add(b[i]);
-            
-        for(int i=0; i<n+m; i++)
-            arr[i] = pq.poll(); 
-        
-        return arr;
+         int []ans=new int[n+m];
+         int idx=0;
+         for(int i=0;i<n;i++)ans[idx++]=a[i];
+         for(int i=0;i<m;i++)ans[idx++]=b[i];
+         
+         int N=n+m;
+         for(int i=N/2;i>=0;i--){
+             downHeapify(i,ans);
+         }
+         return ans;
     
 
     }
+    
+    void downHeapify(int pidx,int []ans){
+        int mini=pidx;
+        int left=2*pidx+1;
+        int right=2*pidx+2;
+        
+        if(left < ans.length && ans[left]>ans[mini]){
+            mini=left;
+        }
+        
+        if(right < ans.length && ans[right]>ans[mini]){
+            mini=right;
+        }
+        
+        if(pidx!=mini){
+            swap(mini,pidx,ans);
+            downHeapify(mini,ans);
+        }
+    }
+    void swap(int i,int j,int []ans){
+        int temp=ans[i];
+        ans[i]=ans[j];
+        ans[j]=temp;
+    }
 }
+//1.54 sec
