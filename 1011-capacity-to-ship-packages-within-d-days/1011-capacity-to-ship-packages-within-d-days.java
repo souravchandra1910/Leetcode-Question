@@ -9,7 +9,7 @@ class Solution {
         int ans = 0;
         while (low <= high) {
             int mid = low + (high - low) / 2;
-            if (blackBox(arr, mid/*capacity we will be carrying everyday*/, days) == true) {
+            if (blackBox(arr, mid /*capacity we will be carrying everyday*/, days) == true) {
                 ans = mid;
                 high = mid - 1;
             } else {
