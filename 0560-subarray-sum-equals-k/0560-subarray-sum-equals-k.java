@@ -6,11 +6,10 @@ class Solution {
         // cnt++;
 
         HashMap<Integer, Integer> hm = new HashMap<>();
+        int sum = 0, cnt = 0;
         hm.put(0, 1);
-        int sum = 0;
-        int cnt = 0;
-        for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
+        for (int val : nums) {
+            sum += val;
             if (hm.containsKey(sum - k) == true) {
                 cnt += hm.get(sum - k);
             }
