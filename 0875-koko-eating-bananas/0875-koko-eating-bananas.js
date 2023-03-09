@@ -8,8 +8,8 @@ var minEatingSpeed = function(piles, h) {
     for(let i=0;i<piles.length;i++)high+=piles[i];
     let ans=0;
     while(low<=high){
-        let mid=Math.floor((low+high)/2)
-        if(blackBox(piles,mid,h)==true){
+        let mid=Math.floor((low+high)/2);
+        if(blackBox(piles,mid,h)===true){
             ans=mid;
             high=mid-1;
         }else{
