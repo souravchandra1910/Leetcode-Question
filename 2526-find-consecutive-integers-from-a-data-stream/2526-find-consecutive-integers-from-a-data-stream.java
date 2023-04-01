@@ -5,20 +5,21 @@ class DataStream {
 
     public DataStream(int value, int k) {
         this.size = k;
-        val = value;
+        this.val = value;
     }
 
     public boolean consec(int num) {
         if (num == val) {
             i++;
-            if(i-j>size)j++;
+            if (i - j > size) j++;
             if (i - j == size) {
                 return true;
-            }else{
+            } else {
                 return false;
             }
-        }else{
-            j=i;
+        } else {
+            //acquire karna yaha se suru hoga
+            j = i;
             return false;
         }
     }
