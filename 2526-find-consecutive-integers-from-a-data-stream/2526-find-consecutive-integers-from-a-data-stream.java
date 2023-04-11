@@ -1,27 +1,27 @@
 class DataStream {
+    int i = 0;
+    int j = 0;
     int size;
-    int i = 0, j = 0;
     int val;
 
     public DataStream(int value, int k) {
-        this.size = k;
         this.val = value;
+        this.size = k;
     }
 
     public boolean consec(int num) {
         if (num == val) {
-            i++;
-            if (i - j > size) j++;
-            if (i - j == size) {
+            if (i - j + 1 == size) {
                 return true;
+            } else if (i - j + 1 > size) {
+                j++;
             } else {
-                return false;
+                i++;
             }
         } else {
-            //acquire karna yaha se suru hoga
             j = i;
-            return false;
         }
+        return false;
     }
 }
 /**
