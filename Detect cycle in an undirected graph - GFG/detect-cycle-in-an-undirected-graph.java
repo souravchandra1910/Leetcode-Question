@@ -33,46 +33,24 @@ class GFG {
 
 
 class Solution {
-    
-    class Pair{
-        int x,y;
-        Pair(int x,int y){
-            this.x=x;
-            this.y=y;
-        }
-    }
     // Function to detect cycle in an undirected graph.
     public boolean isCycle(int n, ArrayList<ArrayList<Integer>> adj) {
        boolean []vis=new boolean[n];
        for(int i=0;i<n;i++){
            if(vis[i]==false){
-               if(bfsCycle(i,adj,vis)==true)return true;
+               if(dfsCycle(i,-1,adj,vis)==true)return true;
            }
        }
        return false;
     }
-    
-    
-    boolean bfsCycle(int node,ArrayList<ArrayList<Integer>>adj,boolean []vis){
+    boolean dfsCycle(int node,int par,ArrayList<ArrayList<Integer>>adj,boolean []vis){
         vis[node]=true;
-        Queue<Pair>mq=new ArrayDeque<>();
-        mq.add(new Pair(node,-1));
-        
-        while(mq.size()>0){
-            Pair p=mq.poll();
-            node=p.x;
-            int parent=p.y;
-            for(int it:adj.get(node)){
-                if(vis[it]==false){
-                    vis[it]=true;
-                    mq.add(new Pair(it,node));
-                }else {
-                    if(it!=parent){
-                        return true;
-                    }
-                }
+        for(int it:adj.get(node)){
+            if(vis[it]==false){
+                if(dfsCycle(it,node,adj,vis)==true)return true;
+            }else if(it!=par){
+                return true;
             }
-            
         }
         return false;
     }
