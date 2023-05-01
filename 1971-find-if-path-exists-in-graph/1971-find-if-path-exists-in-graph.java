@@ -1,31 +1,28 @@
 class Solution {
-    public boolean validPath(int n, int[][] edges, int src, int des) {
-        ArrayList<Integer>[]arr=new ArrayList[n];
-        for(int i=0;i<n;i++)arr[i]=new ArrayList<>();
-        for(int []it:edges){
-            int u=it[0];
-            int v=it[1];
+
+    public boolean validPath(int n, int[][] edges, int source, int destination) {
+        ArrayList<Integer>[] arr = new ArrayList[n];
+        for (int i = 0; i < n; i++) arr[i] = new ArrayList<>();
+        for (int[] it : edges) {
+            int u = it[0];
+            int v = it[1];
             arr[v].add(u);
             arr[u].add(v);
         }
-        boolean []vis=new boolean[n+1];
-        return dfs(arr,vis,src,des);
+        boolean[] vis = new boolean[n];
+        return dfsPaths(source, destination, arr, vis);
     }
-    
-    
-    public boolean dfs(ArrayList<Integer>[]arr,boolean []vis,int src,int des){
-        if(src==des)return true;
-        vis[src]=true;
-        for(int it:arr[src]){
-            if(vis[it]==false){
-            boolean val=dfs(arr,vis,it,des);
-            if(val==true){
+
+    boolean dfsPaths(int src, int des, List<Integer>[] adj, boolean[] vis) {
+        if (src == des) {
             return true;
-            }
         }
+        vis[src] = true;
+        for (int it : adj[src]) {
+            if (vis[it] == false) {
+               if(dfsPaths(it, des, adj, vis)==true)return true;
+            }
         }
         return false;
     }
-    
-    
 }
