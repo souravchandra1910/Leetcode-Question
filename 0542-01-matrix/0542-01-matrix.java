@@ -1,4 +1,5 @@
 class Solution {
+    // the direction array which will help us travel in all 4 directions
     int[] dx = { -1, 0, 0, 1 };
     int[] dy = { 0, -1, 1, 0 };
 
@@ -17,10 +18,12 @@ class Solution {
         int[][] ans = new int[n][m];
         boolean[][] vis = new boolean[n][m];
         Queue<Pair> mq = new ArrayDeque<>();
+        // initial we will push all elements having value (zero '0') and say they are at a distabce of 0(zero) from nearst 0(zero)
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (mat[i][j] == 0) {
                     vis[i][j] = true;
+                    ans[i][j] = 0;// zeros are at a distance of zero 
                     mq.add(new Pair(i, j, 0));
                 }
             }
@@ -37,7 +40,7 @@ class Solution {
                 int ncol = col + dy[i];
                 if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m && vis[nrow][ncol] == false && mat[nrow][ncol] == 1) {
                     vis[nrow][ncol] = true;
-                    mq.add(new Pair(nrow, ncol, dis+1));
+                    mq.add(new Pair(nrow, ncol, dis + 1));
                 }
             }
         }
