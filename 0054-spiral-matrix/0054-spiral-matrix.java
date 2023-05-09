@@ -1,42 +1,44 @@
 class Solution {
 
-    public List<Integer> spiralOrder(int[][] arr) {
-        int n = arr.length;
-        int m = arr[0].length;
-        int max = n * m;
+    public List<Integer> spiralOrder(int[][] matrix) {
         List<Integer> al = new ArrayList<>();
-        int cnt = 0;
-        int row = 0;
-        int col = 0;
-        int mrow = n - 1;
-        int mcol = m - 1;
-        while (cnt < max) {
-            for (int i = row, j = col; j <= mcol && cnt < max; j++) {
-                al.add(arr[i][j]);
-                cnt++;
-            }
-            row++;
+        int n = matrix.length;
+        int m = matrix[0].length;
+        int minr = 0; // minimum row idx
+        int maxr = matrix.length - 1; // maximum row idx
+        int minc = 0; // minimum col idx
+        int maxc = matrix[0].length - 1; // maximum col idx
+        int total = n * m;
+        int count = 0;
 
-            for (int i = row, j = mcol; i <= mrow && cnt < max; i++) {
-                al.add(arr[i][j]);
-                cnt++;
+        while (count < total) {
+            // left to right cols are increasing rows are const
+            for (int i = minr, j = minc; j <= maxc && count < total; j++) {
+                al.add(matrix[i][j]);
+                count++;
             }
-            mcol--;
-            for (int i = mrow, j = mcol; j >= col && cnt < max; j--) {
-                al.add(arr[i][j]);
-                cnt++;
+            minr++; // this is done to avoid pick the last element twice
+
+            //top to bottom rows are increasing ,cols are const
+            for (int i = minr, j = maxc; i <= maxr && count < total; i++) {
+                al.add(matrix[i][j]);
+                count++;
             }
-            mrow--;
-            for (int i = mrow, j = col; i >= row && cnt < max; i--) {
-                al.add(arr[i][j]);
-                cnt++;
+            maxc--;
+            //right to left cols decreasing ,rows are const
+            for (int i = maxr, j = maxc; j >= minc && count < total; j--) {
+                al.add(matrix[i][j]);
+                count++;
             }
-            col++;
+            maxr--;
+
+            // bottom to top rows are decreasing ,cols are const
+            for (int i = maxr, j = minc; i >= minr && count < total; i--) {
+                al.add(matrix[i][j]);
+                count++;
+            }
+            minc++;
         }
         return al;
     }
 }
-// left to right cols are increasing rows are const & row++
-//top to bottom row++,col const & mcol--
-//right to left cols-- ,row const & mrow--
-// bottom to top row==,col const & col++
