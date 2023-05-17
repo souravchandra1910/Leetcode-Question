@@ -9,16 +9,25 @@
  * }
  */
 class Solution {
+
     public ListNode swapPairs(ListNode head) {
-      ListNode dummy=new ListNode(-1),prev=dummy,curr=head,forw=null;
-        dummy.next=head;
-        while(curr!=null && curr.next!=null){
-            forw=curr.next;
-            prev.next=forw;
-            curr.next=forw.next;
-            prev.next.next=curr;
-            curr=curr.next;
-            prev=prev.next.next;
+        if (head == null || head.next == null) return head;
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+
+        ListNode prev = dummy;
+        while (prev.next != null && prev.next.next != null) { // both the nodes exist
+            //get
+            ListNode curr = prev.next;
+            ListNode forw = prev.next.next;
+
+            //swap
+            curr.next = forw.next;
+            forw.next = curr;
+
+            //update pointers
+            prev.next = forw;
+            prev = curr;
         }
         return dummy.next;
     }
