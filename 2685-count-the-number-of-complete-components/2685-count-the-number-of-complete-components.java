@@ -40,6 +40,6 @@ class Solution {
                 }
             }
         }
-        return edge/2 == ((cnode * (cnode - 1)) / 2);
+        return edge == ((cnode * (cnode - 1)));
     }
 }
