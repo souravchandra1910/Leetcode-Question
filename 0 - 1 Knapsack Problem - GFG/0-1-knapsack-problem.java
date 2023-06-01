@@ -54,16 +54,14 @@ class Solution
          int [][]dp=new int[n+1][w+1];
          for(int i=1;i<=n;i++){
              for(int j=1;j<=w;j++){
-                 //if pick it
                  int pick=0,notpick=0;
                  // if i can pick it
                  if(wt[i-1]<=j){
                      int rem=j-wt[i-1];
                      pick=dp[i-1][rem]+val[i-1];
                  }
-                    notpick=dp[i-1][j]+0; 
+                notpick=dp[i-1][j]+0; 
                  dp[i][j]=Math.max(pick,notpick);
-                
              }
          }
          return dp[n][w];
