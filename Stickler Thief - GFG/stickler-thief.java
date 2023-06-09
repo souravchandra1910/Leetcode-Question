@@ -36,16 +36,16 @@ class Solution
     //Function to find the maximum money the thief can get.
     public int FindMaxSum(int arr[], int n)
     {
-        int inc=arr[0];
-        int exc=0;
-        for(int i=1;i<n;i++){
-            int ninc=exc+arr[i];
-            int nexc=Math.max(inc,exc);
-            
-            inc=ninc;
-            exc=nexc;
-        }
-        return Math.max(inc,exc);
+       int []dp=new int[n];
+       dp[0]=Math.max(arr[0],0);
+       for(int i=1;i<n;i++){
+           int pick=arr[i];
+           if(i>1)pick+=dp[i-2];
+           int notpick=dp[i-1];
+           
+           dp[i]=Math.max(pick,notpick);
+       }
+       return dp[n-1];
     }
 }
 // dp[0]=5
