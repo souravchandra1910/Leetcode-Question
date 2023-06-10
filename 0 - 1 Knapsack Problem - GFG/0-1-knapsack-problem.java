@@ -49,18 +49,17 @@ class gfg
 class Solution 
 { 
     //Function to return max value that can be put in knapsack of capacity W.
-    static int knapSack(int w/*bag size*/, int wt[], int val[], int n) 
+    static int knapSack(int w, int wt[], int val[], int n) 
     { 
          int [][]dp=new int[n+1][w+1];
-         for(int i=1;i<=n;i++){
-             for(int j=1;j<=w;j++){
-                 int pick=0,notpick=0;
-                 // if i can pick it
+         for(int i=1;i<dp.length;i++){
+             for(int j=1;j<dp[0].length;j++){
+                 int pick=0;
                  if(wt[i-1]<=j){
                      int rem=j-wt[i-1];
                      pick=dp[i-1][rem]+val[i-1];
                  }
-                notpick=dp[i-1][j]+0; 
+                 int notpick=dp[i-1][j]+0;
                  dp[i][j]=Math.max(pick,notpick);
              }
          }
