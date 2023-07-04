@@ -2,11 +2,11 @@ class Solution {
 
     public int countKDifference(int[] nums, int k) {
         HashMap<Integer, Integer> hm = new HashMap<>();
-        int cnt = 0;
+        int cnt=0;
         for (int i = 0; i < nums.length; i++) {
             if (hm.containsKey(nums[i] - k)) {
                 cnt += hm.get(nums[i] - k);
-            } 
+            }
             if (hm.containsKey(nums[i] + k)) {
                 cnt += hm.get(nums[i] + k);
             }
