@@ -20,6 +20,7 @@ class Solution {
                 }
             }
         }
+        hm.clear();
         return ans;
     }
 }
