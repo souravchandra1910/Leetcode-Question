@@ -6,14 +6,12 @@ class Solution {
             if (val > 0) {
                 st.push(val);
             } else {
-                while (st.size() > 0 && st.peek() > 0 && Math.abs(st.peek()) < Math.abs(val)) {
+                while (st.size() > 0 && st.peek() > 0 && st.peek() < -val) {
                     st.pop();
                 }
-                if (st.size() > 0 && st.peek() > -val) {
-                    
-                } else if (st.size() > 0 && val == -st.peek()) {
+                if (st.size() > 0 && val == -st.peek()) {
                     st.pop();
-                } else {
+                } else if (st.size() > 0 && st.peek() > -val) {} else {
                     st.push(val);
                 }
             }
