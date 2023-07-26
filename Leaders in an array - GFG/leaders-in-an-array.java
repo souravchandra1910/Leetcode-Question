@@ -51,14 +51,14 @@ class Solution{
         ArrayList<Integer>al=new ArrayList<>();
         al.add(arr[n-1]);
         int max=arr[n-1];
-        for(int i=n-2;i>=0;i--){
-            int curr_val=arr[i];
-            if(curr_val>=max){
-                al.add(curr_val);
-                max=curr_val;
+        for (int i = n - 2; i >= 0; i--) {
+            if(arr[i]>=max){
+                al.add(arr[i]);
+                max=arr[i];
             }
         }
         Collections.reverse(al);
         return al;
+        
     }
 }
