@@ -52,7 +52,7 @@ class Solution
                 }
             }
             // right half is sorted
-            else if(arr[mid]<=arr[high]){
+            else if(arr[mid]<arr[high]){
                 if(arr[mid]<=x && arr[high]>x){
                     low=mid+1;
                 }else{
