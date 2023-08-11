@@ -46,13 +46,13 @@ class Solution{
     {
         HashMap<Integer,Integer>hm=new HashMap<>();
         int sum=0;
-        hm.put(sum,1);
-        for(int val:arr){
-            sum+=val;
+        hm.put(sum,-1);
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
             if(hm.containsKey(sum)==true){
                 return true;
             }
-            hm.put(sum,hm.getOrDefault(sum,0)+1);
+            hm.put(sum,i);
         }
         return false;
     }
