@@ -36,7 +36,7 @@ class GfG
            s0+=(i*arr[i]);
        }
        int max=s0;
-       for(int i=0;i<n;i++){
+       for(int i=0;i<n-1;i++){
             int s=s0+sum-n*arr[n-i-1];
             max=Math.max(s,max);
             s0=s;
