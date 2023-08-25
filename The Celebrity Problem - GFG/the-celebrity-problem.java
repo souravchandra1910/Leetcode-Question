@@ -33,33 +33,29 @@ class GFG{
 class Solution
 { 
     //Function to find if there is a celebrity in the party or not.
-    int celebrity(int [][]arr, int n)
+    int celebrity(int arr[][], int n)
     {
         Stack<Integer>st=new Stack<>();
-        for(int i=0;i<n;i++){
-            st.push(i);
-        }
-        while(st.size()>=2){
-            int i=st.pop();
-            int j=st.pop();
-            
-            if(arr[i][j]==1){
-                //  i knows j
-                st.push(j);
-            }else{
-                //i doesn't know j
-                st.push(i);
-            }
-        }
-        int pot=st.pop();
-        for(int i=0;i<n;i++){
-            if(i!=pot){
-                 if(arr[i][pot]==0 || arr[pot][i]==1){
-                     return -1;
-                 }
-            }
-        }
-        return pot;
-        
+    	for(int i=0;i<n;i++){
+    	    st.push(i);
+    	}
+    	while(st.size()>=2){
+    	    int i=st.pop();
+    	    int j=st.pop();
+    	    if(arr[i][j]==1){
+    	        st.push(j);
+    	    }else{
+    	        st.push(i);
+    	    }
+    	}
+    	int pot=st.pop();
+    	for(int i=0;i<n;i++){
+    	    if(pot!=i){
+    	        if(arr[pot][i]==1 || arr[i][pot]==0){
+    	            return -1;
+    	        }
+    	    }
+    	}
+    	return pot;
     }
 }
