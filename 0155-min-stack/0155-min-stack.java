@@ -1,10 +1,10 @@
 class MinStack {
-    Stack<Integer> st;
-    Stack<Integer> min;
+    Deque<Integer> st;
+    Deque<Integer> min;
 
     public MinStack() {
-        this.st = new Stack<>();
-        this.min = new Stack<>();
+        this.st = new ArrayDeque<>();
+        this.min = new ArrayDeque<>();
     }
 
     public void push(int val) {
@@ -15,8 +15,12 @@ class MinStack {
     }
 
     public void pop() {
-        int val=st.pop();
-        if(val==min.peek())min.pop();
+        if (st.peek().equals(min.peek())) {
+            st.pop();
+            min.pop();
+        } else {
+            st.pop();
+        }
     }
 
     public int top() {
