@@ -3,51 +3,33 @@ import java.util.*;
 
 class TwoStack
 {
-	
-	int size;
-	int top1,top2;
-	//int arr[] = new int[size];
-	int arr[] = new int[100]; 
-	
-	TwoStack()
-	{
-		int n =100;
-		size = n;
-		//arr[] = new int[n];
-		top1 = -1;
-		top2 = size;
-	}
-	
-	
 	public static void main(String args[])
 	{
 		Scanner sc = new Scanner(System.in); 
 		int T = sc.nextInt();
 		while(T>0)
 		{
-			TwoStack sq = new TwoStack();
-			
+			twoStacks g = new twoStacks();
 			int Q = sc.nextInt();
 			while(Q>0)
 			{
 				int stack_no = sc.nextInt();
 				int QueryType = sc.nextInt();
 				
-				Stacks g = new Stacks();
 				
 				if(QueryType == 1)
 				{
 					int a = sc.nextInt();
 					if(stack_no == 1)
-					 g.push1(a,sq);
+					 g.push1(a);
 					else if(stack_no ==2)
-					 g.push2(a,sq);
+					 g.push2(a);
 				}else if(QueryType == 2)
 				{
 					if(stack_no==1)
-					System.out.print(g.pop1(sq)+" ");
+					System.out.print(g.pop1()+" ");
 					else if(stack_no==2)
-					System.out.print(g.pop2(sq)+" ");
+					System.out.print(g.pop2()+" ");
 				}
 			
 				Q--;
@@ -62,57 +44,42 @@ class TwoStack
 // } Driver Code Ends
 
 
-/* Structure of the class is
-class TwoStack
+
+class twoStacks
 {
-
-	int size;
-	int top1,top2;
-	int arr[] = new int[100];
-
-	TwoStack()
-	{
-		size = 100;
-		top1 = -1;
-		top2 = size;
-	}
-}*/
-
-class Stacks
-{
-    
+    int arr[];
+    int size;
+    int top1, top2;
+    twoStacks()
+    {
+        size = 100; 
+        arr = new int[100]; 
+        top1 = -1; 
+        top2 = size;
+    }
     //Function to push an integer into the stack1.
-    void push1(int x, TwoStack st)
+    void push1(int x)
     {
-      
-        st.top1++;
-        st.arr[st.top1]=x;
+      if(top1+1==top2)return;
+      arr[++top1]=x;
     }
-
     //Function to push an integer into the stack2.
-    void push2(int x, TwoStack st)
+    void push2(int x)
     {
-        st.top2--;
-        st.arr[st.top2]=x;
+      if(top1+1==top2)return;
+       arr[--top2]=x;
     }
-
     //Function to remove an element from top of the stack1.
-    int pop1(TwoStack st)
+    int pop1()
     {
-        if(st.top1==-1){
-            return -1;
-        }
-        return st.arr[st.top1--];
+        if(top1==-1)return -1;
+        return arr[top1--];
     }
-
     //Function to remove an element from top of the stack2.
-    int pop2(TwoStack st)
+    int pop2()
     {
-         if(st.top2==st.size){
-            return -1;
-        }
-        return st.arr[st.top2++];
-        
+        if(top2==size)return -1;
+        return arr[top2++];
     }
 }
 
