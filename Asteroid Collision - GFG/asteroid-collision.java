@@ -31,17 +31,12 @@ class GFG {
 // User function Template for Java
 
 class Solution {
-    public static int[] asteroidCollision(int N, int[] arr) {
+    public static int[] asteroidCollision(int N, int[] asteroids) {
         Stack<Integer>st=new Stack<>();
-        for(int val:arr){
-            if(val>0)st.push(val);
-            else{
-                // now the current asteroid is moving in left
-                //if the asteroid at the stacks peek is moving to right then
-                //a)value at right>value at left 
-                //b)value at right==value at left
-                //c)value at right<value at left
-                // else the asteroid at the stacks peek is also moving left 
+        for(int val:asteroids){
+            if(val>0){
+                st.push(val);
+            }else{
                 while(st.size()>0 && st.peek()>0 && st.peek()<-val){
                     st.pop();
                 }
@@ -55,10 +50,13 @@ class Solution {
                 }
             }
         }
-        int []ans=new int[st.size()];
-        for(int i=ans.length-1;i>=0;i--){
-            ans[i]=st.pop();
-        }
-        return ans;
+        int []arr=new int[st.size()];
+         int idx=arr.length-1;
+         while(st.size()>0){
+             arr[idx--]=st.pop();
+         }
+         return arr;
+        
+        
     }
 }
