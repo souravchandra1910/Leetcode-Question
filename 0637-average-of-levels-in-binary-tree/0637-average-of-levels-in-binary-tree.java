@@ -21,8 +21,8 @@ class Solution {
         Queue<TreeNode> mq = new ArrayDeque<>();
         mq.add(root);
         while (mq.size() > 0) {
-            int size = mq.size();
             double sum = 0.0;
+            int size = mq.size();
             for (int i = 0; i < size; i++) {
                 root = mq.poll();
                 sum += root.val;
