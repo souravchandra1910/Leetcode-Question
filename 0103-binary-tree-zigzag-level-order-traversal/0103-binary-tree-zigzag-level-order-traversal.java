@@ -17,33 +17,30 @@ class Solution {
 
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> ans = new ArrayList<>();
-        Queue<TreeNode> mq = new ArrayDeque<>();
-        boolean flag = true;
         if (root == null) return ans;
+        ArrayDeque<TreeNode> mq = new ArrayDeque<>();
         mq.add(root);
+        boolean flag = true;
         while (mq.size() > 0) {
             int size = mq.size();
+            List<Integer> al = new ArrayList<>();
             if (flag == true) {
-                List<Integer> al = new ArrayList<>();
                 for (int i = 0; i < size; i++) {
                     root = mq.poll();
                     al.add(root.val);
-                    if (root.left != null) mq.add(root.left);
-                    if (root.right != null) mq.add(root.right);
+                    if (root.left != null) mq.addLast(root.left);
+                    if (root.right != null) mq.addLast(root.right);
                 }
-                ans.add(al);
             } else {
-                List<Integer> al = new ArrayList<>();
                 for (int i = 0; i < size; i++) {
-                    root = mq.poll();
-                    al.add(0, root.val);
-                    if (root.left != null) mq.add(root.left);
-                    if (root.right != null) mq.add(root.right);
+                    root = mq.pollLast();
+                    al.add(root.val);
+                    if (root.right != null) mq.addFirst(root.right);
+                    if (root.left != null) mq.addFirst(root.left);
                 }
-                ans.add(al);
             }
-
             flag = !flag;
+            ans.add(al);
         }
         return ans;
     }
