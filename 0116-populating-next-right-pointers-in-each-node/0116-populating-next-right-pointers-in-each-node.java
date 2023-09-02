@@ -25,23 +25,17 @@ class Solution {
 
     public Node connect(Node root) {
         if (root == null) return null;
-        Queue<Node> mq = new ArrayDeque<>();
-        mq.add(root);
-        while (mq.size() > 0) {
-            int size = mq.size();
-            for (int i = 0; i < size; i++) {
-                Node node = mq.poll();
-                // System.out.println(node.val);
-                if (node.left != null) mq.add(node.left);
-                if (node.right != null) mq.add(node.right);
-                if (i == size - 1) {
-                    // System.out.println(node.val);
-                    node.next = null;
-                } else {
-                    // System.out.println(node.val);
-                    node.next = mq.peek();
+        Node leftmost = root;
+        while (leftmost.left != null) {
+            Node curr = leftmost;
+            while (curr != null) {
+                curr.left.next = curr.right;
+                if (curr.next != null) {
+                    curr.right.next = curr.next.left;
                 }
+                curr = curr.next;
             }
+            leftmost = leftmost.left;
         }
         return root;
     }
