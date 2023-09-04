@@ -25,9 +25,9 @@ class Solution {
 
     public Node connect(Node root) {
         if (root == null) return null;
-        Node leftmost = root;
-        while (leftmost.left != null) {
-            Node curr = leftmost;
+        Node leftMost = root;
+        while (leftMost.left != null) {
+            Node curr = leftMost;
             while (curr != null) {
                 curr.left.next = curr.right;
                 if (curr.next != null) {
@@ -35,7 +35,7 @@ class Solution {
                 }
                 curr = curr.next;
             }
-            leftmost = leftmost.left;
+            leftMost = leftMost.left;
         }
         return root;
     }
