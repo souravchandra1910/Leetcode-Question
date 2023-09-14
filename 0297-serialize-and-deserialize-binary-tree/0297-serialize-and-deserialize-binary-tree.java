@@ -37,9 +37,9 @@ public class Codec {
         mq.add(root);
         for (int i = 1; i < arr.length; i++) {
             TreeNode parent = mq.poll();
-            if (!arr[i].equals("$")) {
-                TreeNode left = new TreeNode(Integer.parseInt(arr[i]));
-                parent.left = left;
+            if(!arr[i].equals("$")){
+                TreeNode left=new TreeNode(Integer.parseInt(arr[i]));
+                parent.left=left;
                 mq.add(left);
             }
             if (!arr[++i].equals("$")) {
