@@ -15,46 +15,41 @@
  */
 class Solution {
 
-    class Pair implements Comparable<Pair> {
-        int hl;
-        int val;
+    public class Pair {
+        TreeNode root;
+        int level;
 
-        Pair(int hl, int val) {
-            this.hl = hl;
-            this.val = val;
-        }
-
-        public int compareTo(Pair o) {
-            if (this.val == o.val) {
-                return this.hl - o.hl;
-            } else {
-                return o.val - this.val;
-            }
+        Pair(TreeNode root, int level) {
+            this.root = root;
+            this.level = level;
         }
     }
 
     public int maxLevelSum(TreeNode root) {
+        if (root == null) return 0;
         List<Pair> al = new ArrayList<>();
-        Queue<TreeNode> mq = new ArrayDeque<>();
-        if (root != null) {
-            mq.add(root);
-        }
-        int lh = 1;
+        Queue<Pair> mq = new ArrayDeque<>();
+        mq.add(new Pair(root, 1));
+        int max = Integer.MIN_VALUE;
+        int minLevel = 0;
         while (mq.size() > 0) {
             int size = mq.size();
+            int lvl = mq.peek().level;
             int sum = 0;
             for (int i = 0; i < size; i++) {
-                root = mq.remove();
-                sum += root.val;
-                if (root.left != null) mq.add(root.left);
-                if (root.right != null) mq.add(root.right);
+                Pair p = mq.poll();
+                TreeNode node = p.root;
+                int level = p.level;
+                int val = p.root.val;
+                sum += val;
+                if (node.left != null) mq.add(new Pair(node.left, level + 1));
+                if (node.right != null) mq.add(new Pair(node.right, level + 1));
             }
-
-            al.add(new Pair(lh, sum));
-            lh++;
+            if (sum > max) {
+                max = sum;
+                minLevel = lvl;
+            }
         }
-        Collections.sort(al);
-
-        return al.get(0).hl;
+        return minLevel;
     }
 }
