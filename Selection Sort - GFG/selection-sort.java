@@ -33,16 +33,14 @@ class GFG
 
 class Solution
 {
-	int  select(int arr[], int minIdx)
-	
+	int  select(int arr[], int i)
 	{
-	     int i=minIdx;
          for(int j=i+1;j<arr.length;j++){
-             if(arr[minIdx]>arr[j]){
-                 minIdx=j;
+             if(arr[i]>arr[j]){
+                 i=j;
              }
          }
-         return minIdx;
+         return i;
 	}
 	
 	void selectionSort(int arr[], int n)
