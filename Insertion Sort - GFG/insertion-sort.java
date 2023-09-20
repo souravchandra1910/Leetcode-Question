@@ -50,6 +50,7 @@ class Solution
           int temp=arr[i];
           for(;j>=0;j--){
               if(arr[j]>temp){
+                  //shifting
                   arr[j+1]=arr[j];
               }else{
                   break;
