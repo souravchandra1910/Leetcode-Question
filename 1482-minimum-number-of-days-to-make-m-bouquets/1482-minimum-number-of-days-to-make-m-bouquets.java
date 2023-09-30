@@ -1,10 +1,10 @@
 class Solution {
 
     public int minDays(int[] arr, int m, int k) {
-        if (m *1L* k > arr.length) return -1;
-        int low = arr[0], high = arr[0];
+        if (m * 1L * k > arr.length) return -1;
+        int low = 1, high = arr[0];
         for (int i = 0; i < arr.length; i++) {
-            low = Math.min(low, arr[i]);
+            // low = Math.min(low, arr[i]);
             high = Math.max(high, arr[i]);
         }
         int ans = 0;
