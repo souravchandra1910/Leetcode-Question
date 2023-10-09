@@ -1,14 +1,14 @@
 class Solution {
 
-    public int[] searchRange(int[] arr, int x) {
+    public int[] searchRange(int[] nums, int target) {
         int fi = -1;
-        int low = 0, high = arr.length - 1;
+        int low = 0, high = nums.length - 1;
         while (low <= high) {
             int mid = (low + high) / 2;
-            if (arr[mid] == x) {
+            if (nums[mid] == target) {
                 fi = mid;
                 high = mid - 1;
-            } else if (x < arr[mid]) {
+            } else if (nums[mid] > target) {
                 high = mid - 1;
             } else {
                 low = mid + 1;
@@ -16,18 +16,19 @@ class Solution {
         }
         int li = -1;
         low = 0;
-        high = arr.length - 1;
+        high = nums.length - 1;
         while (low <= high) {
             int mid = (low + high) / 2;
-            if (arr[mid] == x) {
+            if (nums[mid] == target) {
                 li = mid;
                 low = mid + 1;
-            } else if (arr[mid] > x) {
+            } else if (nums[mid] > target) {
                 high = mid - 1;
             } else {
                 low = mid + 1;
             }
         }
-        return new int[] { fi, li };
+        int[] ans = { fi, li };
+        return ans;
     }
 }
