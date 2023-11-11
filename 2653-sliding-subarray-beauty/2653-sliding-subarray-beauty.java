@@ -1,34 +1,27 @@
 class Solution {
 
     public int[] getSubarrayBeauty(int[] nums, int k, int x) {
-        int[] map = new int[50];
-        int j = 0, idx = 0;
         int n = nums.length;
-
         int[] ans = new int[n - k + 1];
-        for (int i = 0; i < n; i++) {
-            if (nums[i] < 0) {
-                map[nums[i] + 50]++;
-            }
-            if (i - j + 1 == k) {
-                int cnt = 0;
-                boolean flag = false;
-                for (int a = 0; a < 50; a++) {
-                    if (cnt + map[a] >= x) {
-                        ans[idx++] = a - 50;
-                        cnt = 0;
-                        flag = true;
-                        break;
-                    } else {
-                        cnt += map[a];
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for (int i = 0; i < k - 1; i++) {
+            hm.put(nums[i], hm.getOrDefault(nums[i], 0) + 1);
+        }
+        int idx = 0;
+        for (int i = k - 1; i < n; i++) {
+            hm.put(nums[i], hm.getOrDefault(nums[i], 0) + 1);
+            int cnt = 0;
+            for (int j = -50; j <= 50; j++) {
+                cnt += hm.getOrDefault(j, 0);
+                if (cnt >= x) {
+                    if (j > 0) ans[idx++] = 0; else {
+                        ans[idx++] = j;
                     }
+                    break;
                 }
-                if (flag == false) ans[idx++] = 0;
-                if (nums[j] < 0) {
-                    map[nums[j] + 50]--;
-                }
-                j++;
             }
+            int freq = hm.get(nums[i - k + 1]);
+            if (freq == 1) hm.remove(nums[i - k + 1]); else hm.put(nums[i - k + 1], freq - 1);
         }
         return ans;
     }
