@@ -15,37 +15,20 @@ class Solution {
         ListNode curr1 = l1, curr2 = l2;
         ListNode dummy = new ListNode(-1);
         ListNode itr = dummy;
-        while (curr1 != null && curr2 != null) {
-            int sum = curr1.val + curr2.val;
+        while (curr1 != null || curr2 != null) {
+            int sum = 0;
+            if (curr1 != null) sum += curr1.val;
+            if (curr2 != null) sum += curr2.val;
             sum += c;
             int val = sum % 10;
             c = sum / 10;
             ListNode node = new ListNode(val);
             itr.next = node;
             itr = node;
-            curr1 = curr1.next;
-            curr2 = curr2.next;
+            if (curr1 != null) curr1 = curr1.next;
+            if (curr2 != null) curr2 = curr2.next;
         }
-        while (curr1 != null) {
-            int sum = curr1.val;
-            sum += c;
-            int val = sum % 10;
-            c = sum / 10;
-            ListNode node = new ListNode(val);
-            itr.next = node;
-            itr = node;
-            curr1 = curr1.next;
-        }
-        while (curr2 != null) {
-            int sum = curr2.val;
-            sum += c;
-            int val = sum % 10;
-            c = sum / 10;
-            ListNode node = new ListNode(val);
-            itr.next = node;
-            itr = node;
-            curr2 = curr2.next;
-        }
+
         if (c != 0) {
             ListNode node = new ListNode(c);
             itr.next = node;
