@@ -14,19 +14,26 @@
  * }
  */
 class Solution {
+
     public String tree2str(TreeNode root) {
-         if (root == null) return "";
-        String result = root.val + "";
-        
-        String left = tree2str(root.left);
-        String right = tree2str(root.right);
-        
-        if (left == "" && right == "") return result;
-        if (left == "") return result + "()" + "(" + right + ")";
-        if (right == "") return result + "(" + left + ")";
-        return result + "(" + left + ")" + "(" + right + ")";
-        
-        
-        
+        StringBuilder sb = new StringBuilder();
+        helper(sb, root);
+        return sb.toString();
+    }
+
+    public void helper(StringBuilder sb, TreeNode t) {
+        if (t != null) {
+            sb.append(t.val);
+            if (t.left != null || t.right != null) {
+                sb.append("(");
+                helper(sb, t.left);
+                sb.append(")");
+                if (t.right != null) {
+                    sb.append("(");
+                    helper(sb, t.right);
+                    sb.append(")");
+                }
+            }
+        }
     }
 }
