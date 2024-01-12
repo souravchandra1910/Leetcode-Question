@@ -1,13 +1,13 @@
 class Solution {
 
     public boolean halvesAreAlike(String s) {
-        int n = s.length();
-        int c1 = count_vowels(s.substring(0, n / 2 ));
-        int c2 = count_vowels(s.substring(n / 2 ));
-        return c1 == c2;
+        int v1=countVowels(s.substring(0, s.length() / 2 ));
+        int v2=countVowels(s.substring(s.length() / 2 ));
+      
+        return v1==v2;
     }
 
-    int count_vowels(String s) {
+    private int countVowels(String s) {
         int cnt = 0;
         for (char ch : s.toCharArray()) {
             if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
